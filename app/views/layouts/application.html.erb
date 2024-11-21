@@ -16,10 +16,14 @@
     <nav class>
       <ul>
        <li>
+       <%= link_to user_path(current_user.id) do %>
         <%= "マイページ" %>
+      <% end %>
        </li>
        <li>
+         <%= link_to new_post_path do %>
          <%= "投稿" %>
+         <% end %>
        </li>
        <li>
         <%= link_to homes_about_path do %>

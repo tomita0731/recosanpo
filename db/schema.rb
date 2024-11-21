@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_19_072927) do
+ActiveRecord::Schema.define(version: 2024_11_20_060849) do
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "genre_id"
+    t.text "body"
+    t.string "place"
+    t.integer "step_count"
+    t.integer "publish_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
