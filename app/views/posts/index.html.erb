@@ -1,2 +1,23 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>全ユーザー投稿一覧</h1>
+
+<% @posts.each do |post| %>
+  <div>
+  <span>
+  <%= link_to user_path(post.user.id) do %>
+  <%= post.user.name %>
+  <% end %>
+  </span>
+  <%= link_to post_path(post.id) do %>
+  <span><%= post.step_count %>歩</span>
+  <span><%= post.place %></span>
+  <span><%= post.body %></span>
+  <span>
+  <% if post.images.attached? %>
+   <%= image_tag post.image, size: "100x100" %>
+  <% else %>
+  
+  <% end %>
+  </span>
+  <% end %>
+</div>
+<% end %>

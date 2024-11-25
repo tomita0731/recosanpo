@@ -1,2 +1,28 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1>投稿詳細</h1>
+<div>
+  <span>
+  <%= @post.user.name %>
+  </span>
+  <span>
+    <%= @post.step_count %>
+  </span>
+  <span>
+   <%= @post.place %>
+  </span>
+  <span>
+    <%= @post.body %>
+  </span>
+  <span>
+    <% if @post.images.attached? %>
+      <%= image_tag @post.image, size: "100x100" %>
+    <% else %>
+     <% end %>
+    </span> 
+  </div>
+  <div>
+  <% if @post.user == current_user %>
+   <p><%= link_to "Edit", edit_post_path(@post) %></p>
+   <p><%= link_to " Destroy", post_path(@post), method: :delete %></p>
+  <% end %>
+  </div>
+  
