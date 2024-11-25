@@ -1,2 +1,30 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h2>投稿編集</h2>
+
+<%= form_with model: @post, url: post_path(@post.id),method: :patch do |f| %>
+ <div class="field">
+  <label for="step_count">今日の歩数</label>
+  <%= f.number_field :step_count %>
+ </div> 
+ <dic class="field">
+  <label for="place">場所</label>
+  <%= f.text_field :place %>
+</div>
+<div class="field">
+ <label for="genre_id">ジャンル</label>
+ <%= f.text_field :genre_id %>
+</div>
+<div class="field">
+ <label for="body">本文</label>
+ <%= f.text_area :body %>
+</div>
+<div class="field">
+ <label for="image">画像</label>
+ <%= f.file_field :image, accept: "image/*" %>
+</div>
+
+ <%= f.submit "保存" %>
+<% end %>
+<p><%= link_to "削除", post_path(@post), method: :delete %></p>
+<%= link_to "Show", post_path(@post) %>
+<%= "|" %>
+<%= link_to "Back", posts_path %>
