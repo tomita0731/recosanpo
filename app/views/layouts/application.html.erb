@@ -12,13 +12,18 @@
 
   <body>
    <header>
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
+    <%= link_to root_path do %>
     <h2>RECOSANPO</h2>
+    <% end %>
     <nav class>
       <ul>
+      <% if user_signed_in? %> 
        <li>
-       <%= link_to user_path(current_user.id) do %>
+        <%= link_to user_path(current_user.id) do %>
         <%= "マイページ" %>
-      <% end %>
+        <% end %>
        </li>
        <li>
          <%= link_to new_post_path do %>
@@ -26,29 +31,32 @@
          <% end %>
        </li>
        <li>
-        <%= link_to homes_about_path do %>
-          <%= "RECOSANPOについて" %>
+         <%= link_to homes_about_path do %>
+         <%= "RECOSANPOについて" %>
          <% end %>
        </li>
-       <% if user_signed_in? %>
-        <li>
-          <%= link_to destroy_user_session_path, method: :delete do %>
-           <%= "ログアウト" %>
-          <% end %>
+       <li>
+         <%= link_to destroy_user_session_path, method: :delete do %>
+         <%= "ログアウト" %>
+         <% end %>
         </li>
       <% else %>
-        <li>
-         <%= link_to new_user_session_path do %>
-          <%= "ログイン" %>
-         <% end %>
-        </li>
-       <% end %>
-       
-       <li>
-         <%= link_to new_user_registration_path do %>
-          <%= "新規登録" %>
-         <% end %>
-       </li>
+         <li>
+           <%= link_to homes_about_path do %>
+           <%= "RECOSANPOについて" %>
+           <% end %>
+         </li>
+         <li>
+            <%= link_to new_user_session_path do %>
+            <%= "ログイン" %>
+            <% end %>
+          </li>
+          <li>
+           <%= link_to new_user_registration_path do %>
+           <%= "新規登録" %>
+           <% end %>
+          </li>
+      <% end %>
       </ul>
     </nav>
 

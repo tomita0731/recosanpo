@@ -1,2 +1,11 @@
 <h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+
+<div class="row">
+ <%= link_to "ゲストログイン（閲覧用)", users_guest_sign_in_path, method: :post %>
+</div>
+<div class="row">
+ <%= link_to "ログイン",new_user_session_path %>
+</div>
+<div class="row">
+ <%= link_to "新規アカウント",new_user_registration_path %>
+</div>
