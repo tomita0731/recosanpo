@@ -1,5 +1,14 @@
 <h1>新規投稿</h1>
-<%= form_with model: @posts do |f| %>
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+  <% @post.errors.full_messages.each do |message| %>
+   <li><%= message %></li>
+  <% end %>
+   </ul>
+  <% end %>
+
+<%= form_with model: @post do |f| %>
  <div class="field">
   <label for="step_count">今日の歩数</label>
   <%= f.number_field :step_count %>
@@ -9,8 +18,8 @@
   <%= f.text_field :place %>
 </div>
 <div class="field">
- <label for="genre_id">ジャンル</label>
- <%= f.text_field :genre_id %>
+ <label for="genre">ジャンル</label>
+ <%= f.select :genre, ['日常', 'おでかけ', '旅行'], {include_blank: '---' } %>
 </div>
 <div class="field">
  <label for="body">本文</label>

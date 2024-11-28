@@ -1,13 +1,18 @@
 class PostsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
   def new
-    @posts = Post.new
+    @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id =current_user.id
-    @post.save
-    redirect_to user_path(@post.user_id)
+    if @post.save
+     flash[:notice] = "投稿に成功しました"
+     redirect_to user_path(@post.user_id)
+    else 
+      render :new
+    end
   end
 
   def index
@@ -20,6 +25,8 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    is_matching_login_user
+    
   end
 
   def destroy
@@ -29,16 +36,27 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)
+    @post = Post.find(params[:id])
+    is_matching_login_user
+    if @post.update(post_params)
+     flash[:notice] = "投稿を更新しました"
+     redirect_to post_path(@post.id)
+    else
+     render :edit
+    end
   end
 
 
 private
 
 def post_params
-  params.require(:post).permit(:step_count, :place, :genre, :body, :genre_id, :image)
+  params.require(:post).permit(:step_count, :place, :genre, :body, :image)
+end
+def is_matching_login_user
+  post = Post.find(params[:id])
+  unless post.user_id == current_user.id
+    redirect_to posts_path
+  end
 end
 
 end

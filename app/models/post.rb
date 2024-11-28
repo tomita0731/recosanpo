@@ -2,6 +2,11 @@ class Post < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
+  validates :step_count, presence: true
+  validates :place, presence: true
+
+
+
   def get_image
   unless image.attached?
     file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -9,5 +14,5 @@ class Post < ApplicationRecord
   end
   image
 end
-  end
+ end
 
