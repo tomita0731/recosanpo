@@ -1,2 +1,48 @@
-<h1>Users#mypage</h1>
-<p>Find me in app/views/users/mypage.html.erb</p>
+<h1>マイページ</h1>
+<%= image_tag @user.get_profile_image %>
+ <table class="table">
+
+  <tr>
+   <td>name</td>
+   <th><%= @user.name %></th>
+  </tr>
+  <tr>
+   <td>introduction</td>
+   <td><%= @user.introduction %></td>
+   <% if @user.email != "guest@example.com" %>
+    <td><%= link_to "編集", edit_user_path(@user) %></td>
+   <% end %>
+  </tr>
+</table>
+
+<table class="table">
+ <tbody>
+  <% @posts.each do |post| %>
+  <tr>
+    <th>
+     <%= link_to user_path(post.user.id) do %>
+     <%= image_tag post.user.get_profile_image %>
+     <% end %>
+    </th>
+    <th>
+    <%= post.user.name %>
+    </th>
+  
+  <td>
+   <%= link_to user_path(post.id) do %>
+    <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+    <%= post.step_count %>歩 
+    <%= post.place %>
+    <%= post.genre %>
+    <% end %>
+  </td>
+  <td>
+    <% if post.images.attached? %>
+     <%= image_tag post.image, size: "100x100" %>
+    <% else %>
+    <% end %>
+  </td>
+  </tr>
+ <% end %>
+</tbody>
+</table>

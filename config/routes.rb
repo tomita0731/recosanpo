@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   end
   root to:"homes#top"
   get "homes/about"
-  resources :users, only: [:mypage, :edit, :show, :index, :update, :destroy]
+  get 'mypage', to: 'users#mypage'
+  resources :users, only: [:edit, :show, :index, :update, :destroy]
   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

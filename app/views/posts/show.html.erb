@@ -1,10 +1,13 @@
 <h1>投稿詳細</h1>
 <div>
 <span>
-<%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+ <%= link_to user_path(@post.user.id) do %>
+  <%= image_tag @post.user.get_profile_image %>
+  <%= @post.user.name %>
+ <% end %>
 </span>
   <span>
-   <%= @post.user.name %>
+   <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
   </span>
   <span>
     <%= @post.step_count %>
@@ -32,4 +35,5 @@
   <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか?" %>
   <% end %>
   </div>
+
   

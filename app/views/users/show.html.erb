@@ -10,8 +10,37 @@
   <tr>
    <td>introduction</td>
    <td><%= @user.introduction %></td>
-   <%= link_to "編集", edit_user_path(@user) %>
   </tr>
 </table>
 
-
+<table class="table">
+ <tbody>
+  <% @posts.each do |post| %>
+  <tr>
+    <th>
+     <%= link_to user_path(post.user.id) do %>
+     <%= image_tag post.user.get_profile_image %>
+     <% end %>
+    </th>
+    <th>
+    <%= post.user.name %>
+    </th>
+  
+  <td>
+   <%= link_to post_path(post.id) do %>
+    <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+    <%= post.step_count %>歩 
+    <%= post.place %>
+    <%= post.genre %>
+    <% end %>
+  </td>
+  <td>
+    <% if post.images.attached? %>
+     <%= image_tag post.image, size: "100x100" %>
+    <% else %>
+    <% end %>
+  </td>
+  </tr>
+ <% end %>
+</tbody>
+</table>

@@ -21,7 +21,7 @@
       <ul>
       <% if user_signed_in? %> 
        <li>
-        <%= link_to user_path(current_user.id) do %>
+        <%= link_to mypage_path(current_user.id) do %>
         <%= "マイページ" %>
         <% end %>
        </li>
