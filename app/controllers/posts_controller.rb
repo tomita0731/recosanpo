@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @post.user_id =current_user.id
     if @post.save
      flash[:notice] = "投稿に成功しました"
-     redirect_to user_path(@post.user_id)
+     redirect_to post_path(@post.id)
     else 
       render :new
     end
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to user_path
+    redirect_to mypage_path
   end
 
   def update
