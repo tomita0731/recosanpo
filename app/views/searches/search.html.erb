@@ -5,10 +5,8 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-         <%= link_to user_path(user.id) do %>
-          <td><%= image_tag user.get_profile_image %></td>
-          <td><%= user.name %></td>
-        <% end %>
+         <td><%= link_to user_path(user.id) do %><%= image_tag user.get_profile_image(100,100) %><% end %></td>
+         <td><%= user.name %></td>
         </tr>
       <% end %>
       <% if @users.count == 0 %>
@@ -19,15 +17,12 @@
      <tbody>
        <% @posts.each do |post| %>
         <tr>
-        <%= link_to user_path(post.user.id) do %>
-         <td><%= image_tag post.user.get_profile_image %></td>
+         <td><%= link_to user_path(post.user.id) do %><%= image_tag post.user.get_profile_image(100,100) %><% end %></td>
          <td><%= post.user.name %></td>
-        <% end %>
-        <%= link_to post_path(post.id) do %>
          <td><%= post.step_count %>歩</td>
          <td><%= post.place %></td>
          <td><%= post.genre %></td>
-        <% end %>
+         <td><%= link_to "Show", post_path(post.id) %>
         </tr>
       <% end %>
       <% if @posts.count == 0 %>

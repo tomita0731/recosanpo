@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   has_many_attached :images
   belongs_to :user
+  has_many :post_comments, dependent: :destroy
+
 
   validates :step_count, presence: true
   validates :place, presence: true

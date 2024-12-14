@@ -1,6 +1,6 @@
 <h1>ユーザー詳細</h1>
 
-<%= image_tag @user.get_profile_image %>
+<%= image_tag @user.get_profile_image(100,100) %>
  <table class="table">
 
   <tr>
@@ -19,7 +19,7 @@
   <tr>
     <th>
      <%= link_to user_path(post.user.id) do %>
-     <%= image_tag post.user.get_profile_image %>
+     <%= image_tag post.user.get_profile_image(100,100) %>
      <% end %>
     </th>
     <th>
@@ -33,6 +33,7 @@
     <%= post.place %>
     <%= post.genre %>
     <% end %>
+    <%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %>
   </td>
   <td>
     <% if post.images.attached? %>
