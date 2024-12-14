@@ -17,11 +17,12 @@
   <span><%= post.body %></span>
   <span>
   <% if post.images.attached? %>
-   <%= image_tag post.image, size: "100x100" %>
+   <%= image_tag post.image %>
   <% else %>
   
   <% end %>
   </span>
   <% end %>
+  <span><%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %></span>
 </div>
 <% end %>
