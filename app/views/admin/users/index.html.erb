@@ -1,0 +1,20 @@
+<h1>全ユーザー一覧</h1>
+
+<table class= "table" >
+  <thead>
+    <tr>
+      <th>会員ID </th>
+      <th>氏名</rh>
+      <th>メールアドレス</th>
+    </tr>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+       <td><%= user.id %></td>
+       <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <th><%= link_to '詳細', admin_user_path(user.id) %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
