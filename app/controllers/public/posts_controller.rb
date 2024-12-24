@@ -51,7 +51,7 @@ class Public::PostsController < ApplicationController
 private
 
 def post_params
-  params.require(:post).permit(:step_count, :place, :genre, :body, :image)
+  params.require(:post).permit(:step_count, :place, :genre, :body, :images)
 end
 def is_matching_login_user
   post = Post.find(params[:id])
