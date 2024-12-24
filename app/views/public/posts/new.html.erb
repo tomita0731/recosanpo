@@ -1,4 +1,5 @@
-<h1>新規投稿</h1>
+<h2 class=heading><span>New Sanpo</span></h2>
+
 <% if @post.errors.any? %>
   <%= @post.errors.count %>件のエラーが発生しました
   <ul>
@@ -8,27 +9,33 @@
    </ul>
   <% end %>
 
-<%= form_with model: @post do |f| %>
- <div class="field">
-  <label for="step_count">今日の歩数</label>
-  <%= f.number_field :step_count %>
- </div> 
- <dic class="field">
-  <label for="place">場所</label>
-  <%= f.text_field :place %>
-</div>
-<div class="field">
- <label for="genre">ジャンル</label>
- <%= f.select :genre, ['日常', 'おでかけ', '旅行'], {include_blank: '---' } %>
-</div>
-<div class="field">
- <label for="body">本文</label>
- <%= f.text_area :body %>
-</div>
-<div class="field">
- <label for="image">画像</label>
- <%= f.file_field :image, accept: "image/*" %>
-</div>
 
- <%= f.submit "投稿" %>
-<% end %>
+  <div class="container">
+    <div class="form-row no-gutters">
+     <div class="form-group col-md-5 col-sm-10 mx-2 mx-sm-auto rounded shadow-lg px-5 py-3 my-5">
+      <%= form_with model: @post do |f| %>
+        <div calss="form-group">
+          <label for="input-step_count">歩数</label>
+          <%= f.number_field :step_count, class:"form-control", placeholder:"歩いた数を数字で入力してください" %>
+        </div>
+        <div calss="form-group">
+          <label for="input-place">場所</label>
+          <%= f.text_field :place, class:"form-control", placeholder:"散歩の場所をご記入ください" %>
+        </div>
+        <div calss="form-group">
+          <label for="input-genre">ジャンル</label>
+          <%= f.select :genre, ['日常', 'おでかけ', '旅行', 'その他'], {include_blank: '散歩のジャンルをお選びください' }, class:"form-control" %>
+        </div>
+        <div calss="form-group">
+          <label for="input-body">本文</label>
+          <%= f.text_area :body, class:"form-control", placeholder:"ご自由にご記入ください" %>
+        </div>
+        <div calss="form-group">
+          <label for="input-group-btn">画像</label>
+          <%= f.file_field :images, accept: "image/*", class:"btn" %>
+        </div>
+        <%= f.submit "投稿", class: "btn btn-lg btn-block  mt-5 btn-info " %>
+      <% end %>
+     </div>
+    </div>
+  </div>
