@@ -1,20 +1,34 @@
-<h1>全ユーザー一覧</h1>
+<h2 class=heading><span>All User(Admin）</span></h2>
 
-<table class= "table" >
-  <thead>
-    <tr>
-      <th>会員ID </th>
-      <th>氏名</rh>
-      <th>メールアドレス</th>
-    </tr>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-       <td><%= user.id %></td>
-       <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <th><%= link_to '詳細', admin_user_path(user.id) %></th>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="all-user-container py-10 mt-10">
+  <div class="row mt-5">
+    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>会員ID</th>
+            <th></th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+           <tr>
+            <td><%= user.id %></td>
+            <th><%= image_tag user.get_profile_image(100,100), class: "border-radius" %></th>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+             <%= link_to admin_user_path(user.id), class: "text-dark" do %>
+              <i class="fa-solid fa-circle-info"></i>詳細
+              <% end %>
+            </td>
+           </tr>
+          <% end %>
+        </tbody>
+      </table>
+     </div>
+  </div>
+</div>

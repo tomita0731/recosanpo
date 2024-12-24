@@ -1,0 +1,26 @@
+<% post.post_comments.each do | post_comment | %>
+  <div class="row">
+    <div class="col-10">
+      <%= image_tag post_comment.user.get_profile_image(50,50), class: "border-radius" %>
+        <%= link_to user_path(post.user.id),class: "text-dark" do %>
+         <strong><%= post_comment.user.name %></strong>
+        <% end %>
+      <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+    </div> 
+    <div class="col-2">   
+      <%= link_to admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか?", class: "text-dark" do %>
+       <i class="fa-regular fa-trash-can"></i>
+      <% end %>
+   </div>
+  </div>
+  <div class="px-2 row">
+    <div class="col-2">
+    </div>
+    <div class="col-10">
+    <%= post_comment.comment %>
+    </div>
+  </div>
+  <hr width="auto">
+<% end %>
+ 
+
