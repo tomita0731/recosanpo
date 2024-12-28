@@ -9,7 +9,7 @@ class Public::PostCommentsController < ApplicationController
       redirect_to post_path(@post)
     else
       flash[:alert] = "投稿に失敗しました"
-      render 'posts/show'
+      render 'public/posts/show'
     end
 end
 
