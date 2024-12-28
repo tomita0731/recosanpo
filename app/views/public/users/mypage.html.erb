@@ -1,49 +1,82 @@
-<h1>マイページ</h1>
-<%= image_tag @user.get_profile_image(100,100) %>
- <table class="table">
+<h2 class=heading><span>マイページ</span></h2>
 
-  <tr>
-   <td>name</td>
-   <th><%= @user.name %></th>
-  </tr>
-  <tr>
-   <td>introduction</td>
-   <td><%= @user.introduction %></td>
-   <% if @user.email != "guest@example.com" %>
-    <td><%= link_to "編集", edit_user_path(@user) %></td>
-   <% end %>
-  </tr>
-</table>
 
-<table class="table">
- <tbody>
-  <% @posts.each do |post| %>
-  <tr>
-    <th>
-     <%= link_to user_path(post.user.id) do %>
-     <%= image_tag post.user.get_profile_image(100,100) %>
-     <% end %>
-    </th>
-    <th>
-    <%= post.user.name %>
-    </th>
-  
-  <td>
-   <%= link_to user_path(post.id) do %>
-    <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-    <%= post.step_count %>歩 
-    <%= post.place %>
-    <%= post.genre %>
-    <% end %>
-    <%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %>
-  </td>
-  <td>
-    <% if post.images.attached? %>
-     <%= image_tag post.image, size: "100x100" %>
-    <% else %>
-    <% end %>
-  </td>
-  </tr>
+<div class="user_show-container py-10 mt-5">
+  <div class="row mt-5 text-center">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto">
+      <table class="table">
+        <tr>
+         <%= image_tag @user.get_profile_image(200,200), class: "border-radius show" %>
+          <%= link_to mypage_path(current_user),class: "text-dark" do %>
+            <span style="font-size: 20px; font-weight: bold;"><%= @user.name %></span>
+          <% end %>
+        </tr>
+        <tr>
+          <td class="introduction col-12">
+            <%= @user.introduction %>
+          </td>
+          <% if @user.email != "guest@example.com" %>
+            <td class="mypage-edit col-auto text-right">
+              <%= link_to  edit_user_path(@user) do%>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+     </div>
+  </div>
+</div>
+
+<div class="card-list-container py-10 mt-10">
+  <% @posts.each do |post| %> 
+    <div class="card col-11 col-sm-6 col-md-6 col-lg-4 p-0 mx-auto mt-5 shadow-lg">
+      <div class="card text-center">
+        <div class="card-header">
+          <%= link_to  post_path(post.id),class: "text-dark" do %>
+            <div class="card-step_count">今日の歩数
+              <i class="fa-solid fa-shoe-prints"></i>
+              <strong><%= post.step_count %></strong>歩
+            </div>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <div class="row">
+           <div class="col-7 px-0">
+            <%= image_tag post.user.get_profile_image(50,50), class: "border-radius" %>
+              <%= link_to mypage_path(current_user),class: "text-dark" do %>
+                <strong><%= post.user.name %></strong>
+              <% end %>
+           </div>
+           <div class="col-5 px-0">
+             <div class="card-place">
+              <i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= post.place %>
+             </div>
+             <div class="card-genre">
+             <i class="fa-solid fa-person-walking"></i>&nbsp;&nbsp;<%= post.genre %>
+             </div>
+           </div>
+          </div>
+          <% unless post.body.blank? %>
+            <hr width="auto">
+            <div class="row">
+              <div class="card-body"><%= post.body %></div>   
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class= body-img>
+          <% if post.images.attached? %>
+            <%= image_tag url_for(post.images.first), class: "card-img-bottom" %>
+          <% else %>
+          <% end %>
+        </div>
+        <div class="card-footer text-body-secondary">
+          <%= post.created_at.strftime('%Y/%m/%d %H:%M') %> |
+          <%= link_to "コメント#{post.post_comments.count}件", post_path(post.id), class: "text-dark" %>
+          <i class="fa-regular fa-comment"></i>
+        </div>
+    </div>
+  </div>
  <% end %>
-</tbody>
-</table>
+</div>
