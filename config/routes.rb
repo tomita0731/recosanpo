@@ -20,8 +20,13 @@ Rails.application.routes.draw do
     get "homes/about"
     get 'mypage', to: 'users#mypage'
     get "search" => "searches#search"
-    resources :users, only: [:edit, :show, :index, :update, :destroy]
+    resources :users, only: [:edit, :show, :index, :update, :destroy] do
+      member do
+        get :favorites
+      end
+    end
     resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
+      resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
   end

@@ -52,6 +52,9 @@
           <div class="row">
             <div class="col-9 text-left">
               <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <td id="favorites_btn_<%= @post.id %>">
+                <%= render 'public/favorites/btn', post: @post %>
+              </td>
             </div>
             <div class="px-1 col-3 text-right">
               <span class="post-edit">
