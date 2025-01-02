@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   has_many_attached :images
   belongs_to :user
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
 
   validates :step_count, presence: true
@@ -30,6 +31,11 @@ def self.looks(search, word)
     @post = Post.all
   end
 end
+
+def favorited_by?(user)
+  favorites.exists?(user_id: user.id)
+end
+
 
 end
 

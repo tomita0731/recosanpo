@@ -26,6 +26,7 @@ before_action :ensure_guest_user, only: [:edit]
     @users = User.all
     @user = User.find(params[:id])
     @posts = @user.posts
+    @post = Post.find(params[:id])
   end
 
   def index
@@ -38,12 +39,23 @@ before_action :ensure_guest_user, only: [:edit]
     flash[:notice] = 'アカウントを削除しました'
     redirect_to new_user_registration_path
   end
+
+  def favorites
+    @user = User.find(params[:id])
+    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
 end
 
 private
 
 def user_params
   params.require(:user).permit(:name, :introduction, :profile_image)
+end
+
+def post_params
+  params.require(:post).permit(:step_count, :place, :genre, :body, :images)
 end
 
 def ensure_guest_user

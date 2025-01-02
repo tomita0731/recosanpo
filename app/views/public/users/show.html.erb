@@ -61,6 +61,9 @@
         </div>
         <div class="card-footer text-body-secondary">
           <%= post.created_at.strftime('%Y/%m/%d %H:%M') %> |
+          <td id="favorites_btn_<%= @post.id %>">
+            <%= render 'public/favorites/btn', post: @post %>
+          </td>
           <%= link_to "コメント#{post.post_comments.count}件", post_path(post.id), class: "text-dark" %>
           <i class="fa-regular fa-comment"></i>
         </div>
