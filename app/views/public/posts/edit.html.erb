@@ -3,17 +3,17 @@
 <% if @post.errors.any? %>
   <%= @post.errors.count %>件のエラーが発生しました
   <ul>
-  <% @post.errors.full_messages.each do |message| %>
-   <li><%= message %></li>
-  <% end %>
-   </ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
   <% end %>
 
 
   <div class="container">
     <div class="form-row no-gutters">
      <div class="form-group col-md-5 col-sm-10 mx-2 mx-sm-auto rounded shadow-lg px-5 py-3 my-5">
-     <%= form_with model: @post, url: post_path(@post.id),method: :patch do |f| %>
+      <%= form_with model: @post, url: post_path(@post.id),method: :patch do |f| %>
         <div calss="form-group">
           <label for="input-step_count">歩数</label>
           <%= f.number_field :step_count, class:"form-control", placeholder:"歩いた数を数字で入力してください" %>

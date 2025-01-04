@@ -16,12 +16,13 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.latest
   end
 
   def show
    @post = Post.find(params[:id])
    @post_comment = PostComment.new
+   @post_comments = @post.post_comments.order(created_at: :desc)
   end
 
   def edit

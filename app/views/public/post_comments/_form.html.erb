@@ -1,6 +1,6 @@
 <%= form_with model:[post, post_comment] do |f| %>
-    <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
     <div class="d-flex justify-content-center">
       <%= f.submit "送信", class:"btn btn-outline-secondary col-6" %>
     </div>
-    <% end %>
+  <% end %>
