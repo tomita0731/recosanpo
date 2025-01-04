@@ -1,96 +1,50 @@
 <h2 class=heading><span>Post</span></h2>
 
 <div class="card-list-container py-10 mt-10"> 
-    <div class="card col-11 col-sm-6 col-md-6 col-lg-4 p-0 mx-auto mt-5 shadow-lg">
-      <div class="card text-center">
-        <div class="card-header">
-          <%= link_to  post_path(@post.id),class: "text-dark" do %>
-            <div class="card-step_count">今日の歩数
-              <i class="fa-solid fa-shoe-prints"></i>
-              <strong><%= @post.step_count %></strong>歩
-            </div>
-          <% end %>
+  <div class="card col-11 col-sm-6 col-md-6 col-lg-4 p-0 mx-auto mt-5 shadow-lg">
+    
+    <%= render "card", post: @post, user: @user %>
+    
+    <div class="card-footer text-body-secondary">
+      <div class="row">
+        <div class="col-6 px-0">
+          <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
-        <div class="card-body">
-          <div class="row">
-           <div class="col-7 px-0">
-            <%= image_tag @post.user.get_profile_image(50,50), class: "border-radius.how" %>
+        <div class="col-3  px-0">
+          <div id="favorites_btn_<%= @post.id %>">
+            <%= render 'public/favorites/btn', post: @post %>
+          </div>
+        </div>
+        <div class="px-1 col-3 text-right px-0">
+          <span class="post-edit">
             <% if @post.user == current_user %>
-              <%= link_to mypage_path(current_user),class: "text-dark" do %>
-                <strong><%= @post.user.name %></strong>
+              <%= link_to  edit_post_path(@post), class: "text-dark" do%>
+                <i class="fa-regular fa-pen-to-square"></i>
               <% end %>
-            <% else %>
-              <%= link_to user_path(@post.user.id),class: "text-dark" do %>
-                <strong><%= @post.user.name %></strong>
+              <%= "|" %>
+              <%= link_to post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか?", class: "text-dark" do %>
+                <i class="fa-regular fa-trash-can"></i>
               <% end %>
             <% end %>
-           </div>
-           <div class="col-5 px-0">
-             <div class="card-place">
-              <i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= @post.place %>
-             </div>
-             <div class="card-genre">
-             <i class="fa-solid fa-person-walking"></i>&nbsp;&nbsp;<%= @post.genre %>
-             </div>
-           </div>
-          </div>
-          <% unless @post.body.blank? %>
-            <div class="row">
-              <hr width="auto">
-              <div class="card-body py-0"><%= @post.body %></div>   
-              </div>
-            </div> 
-          <% end %>  
+          </span>
         </div>
-        <div class= body-img>
-          <% if @post.images.attached? %>
-            <%= image_tag url_for(@post.images.first), class: "card-img-bottom" %>
-          <% else %>
-          <% end %>
-        </div>
-        <div class="card-footer text-body-secondary">
-          <div class="row">
-            <div class="col-9 text-left">
-              <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
-              <td id="favorites_btn_<%= @post.id %>">
-                <%= render 'public/favorites/btn', post: @post %>
-              </td>
-            </div>
-            <div class="px-1 col-3 text-right">
-              <span class="post-edit">
-                <% if @post.user == current_user %>
-                  <%= link_to  edit_post_path(@post), class: "text-dark" do%>
-                    <i class="fa-regular fa-pen-to-square"></i>
-                  <% end %>
-                  <%= "|" %>
-                  <%= link_to post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか?", class: "text-dark" do %>
-                    <i class="fa-regular fa-trash-can"></i>
-                  <% end %>
-                <% end %>
-              </span>
-            </div>
-          </div>
-          <hr width="auto">
-          <div class="px-2 row">
-          &nbsp;コメント<%= "#{@post.post_comments.count}" %>件<i class="fa-regular fa-comment"></i>
-          </div>
-          <hr width="auto">
-          <%= render "public/post_comments/index", post: @post, post_comment: @post_comment %>
-          <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
-          
+      </div>
+      <hr width="auto">
+      <div class="px-2 row">
+        &nbsp;コメント<%= "#{@post.post_comments.count}" %>件<i class="fa-regular fa-comment"></i>
+      </div>
+
+      <%= render "public/post_comments/index", post_comments: @post_comments %>
+      <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
         
-            <% if @post_comment.errors.any? %>
-              <%= @post_comment.errors.count %>件のエラーが発生しました
-            <ul>
-        
-       
-      
+      <% if @post_comment.errors.any? %>
+        <%= @post_comment.errors.count %>件のエラーが発生しました
+        <ul>
           <% @post_comment.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
-          </ul>
-          <% end %>
-        </div>
-      </div>
+        </ul>
+      <% end %>
     </div>
   </div>
+</div>

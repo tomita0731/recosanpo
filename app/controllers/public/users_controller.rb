@@ -4,7 +4,7 @@ before_action :ensure_guest_user, only: [:edit]
   def mypage
     @users = User.all
     @user = User.find(current_user.id)
-    @posts = @user.posts
+    @posts = @user.posts.latest
   end
 
   def edit
@@ -23,10 +23,8 @@ before_action :ensure_guest_user, only: [:edit]
   end
 
   def show
-    @users = User.all
     @user = User.find(params[:id])
-    @posts = @user.posts
-    @post = Post.find(params[:id])
+    @posts = @user.posts.latest
   end
 
   def index

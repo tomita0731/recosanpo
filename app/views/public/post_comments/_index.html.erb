@@ -1,9 +1,9 @@
 
-   <% post.post_comments.each do | post_comment | %>
+   <% post_comments.each do | post_comment | %>
     <div class="row">
       <div class="col-10">
         <%= image_tag post_comment.user.get_profile_image(50,50), class: "border-radius" %>
-          <%= link_to user_path(post.user.id),class: "text-dark" do %>
+          <%= link_to user_path(post_comment.user.id),class: "text-dark" do %>
            <strong><%= post_comment.user.name %></strong>
           <% end %>
         <%= post_comment.created_at.strftime('%Y/%m/%d') %>

@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   validates :step_count, presence: true
   validates :place, presence: true
 
+  scope :latest, -> { order(created_at: :desc) }
 
 
   def get_image

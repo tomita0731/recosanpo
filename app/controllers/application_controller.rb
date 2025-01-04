@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_authentication
 
+
   private
 
   def configure_authentication
