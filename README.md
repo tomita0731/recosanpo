@@ -29,3 +29,5 @@
 - IDE：Remote - SSH 
 ​
 ## 使用素材
+フリー画像素材として以下を使用
+・Pexels（https://www.pexels.com/ja-jp/）

@@ -11,7 +11,7 @@ class Public::PostCommentsController < ApplicationController
       flash[:alert] = "投稿に失敗しました"
       render 'public/posts/show'
     end
-end
+  end
 
   def destroy
     PostComment.find(params[:id]).destroy

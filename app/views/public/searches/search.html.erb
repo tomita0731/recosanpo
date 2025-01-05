@@ -1,105 +1,49 @@
 <h2 class=heading><span>検索結果</span></h2>
- <div class="all-user-container py-10 mt-10">
-  <div class="row mt-5">
-    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto">
-      <table class="table">
-        <% if @range == "User" %>
-          <thead>
-             <% @users.each do |user| %>
-            <tr>
-              <th>image</th>
-              <th>name</th>
-              <th>introduction</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th><%= image_tag user.get_profile_image(100,100), class: "border-radius" %>
-              <td>
-                <%= link_to user_path(user.id),class: "text-dark" do %>
-                  <%= user.name %>
-                <% end %>
-              </td>
-              <td><%= user.introduction %></td>
-              <% if user == current_user %>
-                <td>
-                  <%= link_to mypage_path(current_user), class: "text-dark" do %>
-                    <i class="fa-solid fa-circle-info"></i>マイページ
-                  <% end %>
-                </td>
-              <% else %>
-                <td>
-                  <%= link_to user_path(user.id),class: "text-dark" do %>
-                    <i class="fa-solid fa-circle-info"></i>詳細
-                  <% end %>
-                </td>
-              <% end %>
-            <% end %>
-            </tr>
-            <% if @users.count == 0 %>
-              <p>検索結果がありませんでした</p>
-            <% end %>
-          </tbody>
-      </table>
-        <% else %>
-          <% @posts.each do |post| %> 
-            <div class="card col-11 col-sm-6 col-md-6 col-lg-4 p-0 mx-auto mt-5 shadow-lg">
-              <div class="card text-center">
-                <div class="card-header">
-                  <%= link_to  post_path(post.id),class: "text-dark" do %>
-                    <div class="card-step_count">今日の歩数
-                      <i class="fa-solid fa-shoe-prints"></i>
-                      <strong><%= post.step_count %></strong>歩
-                    </div>
-                  <% end %>
+  <% if @range == "User" %>
+
+    <%= render "public/users/info", users: @users %>
+          
+      <% if @users.count == 0 %>
+        <div class="py-5 text-center">
+          検索結果がありませんでした
+        </div>
+        <div class="text-center text-secondary">
+          <%= link_to "<<トップページへ戻る", root_path, class: "text-dark text-gray" %>
+        </div>
+      <% end %>
+  <% else %>
+      <% @posts.each do |post| %> 
+        <div class="card col-11 col-sm-6 col-md-6 col-lg-4 p-0 mx-auto mt-5 shadow-lg">
+
+          <%= render "public/posts/card", post: post %>
+
+            <div class="card-footer text-body-secondary">
+              <div class ="row">
+                <div class="col-5 px-0">
+                  <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
                 </div>
-                <div class="card-body">
-                  <div class="row">
-                   <div class="col-7 px-0">
-                    <%= image_tag post.user.get_profile_image(50,50), class: "border-radius" %>
-                      <%= link_to user_path(post.user.id),class: "text-dark" do %>
-                        <strong><%= post.user.name %></strong>
-                      <% end %>
-                   </div>
-                   <div class="col-5 px-0">
-                     <div class="card-place">
-                      <i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= post.place %>
-                     </div>
-                     <div class="card-genre">
-                     <i class="fa-solid fa-person-walking"></i>&nbsp;&nbsp;<%= post.genre %>
-                     </div>
-                   </div>
+                <div class="col-3 px-0">
+                  <div id="favorites_btn_<%= post.id %>">
+
+                    <%= render 'public/favorites/btn', post: post %>
+
                   </div>
-                  <% unless post.body.blank? %>
-                    <hr width="auto">
-                    <div class="row">
-                      <div class="card-body"><%= post.body %></div>   
-                      </div>
-                    </div>
-                  <% end %>
                 </div>
-                <div class= body-img>
-                  <% if post.images.attached? %>
-                    <%= image_tag url_for(post.images.first), class: "card-img-bottom" %>
-                  <% else %>
-                  <% end %>
-                </div>
-                <div class="card-footer text-body-secondary">
-                  <%= post.created_at.strftime('%Y/%m/%d %H:%M') %> |
+                <div class="col-4 px-0">
                   <%= link_to "コメント#{post.post_comments.count}件", post_path(post.id), class: "text-dark" %>
-                  <i class="fa-regular fa-comment"></i>
+                     <i class="fa-regular fa-comment"></i>
                 </div>
+              </div>
             </div>
           </div>
-          
-          <% end %>
-        <% if @posts.count == 0 %>
-          <p>検索結果がありませんでした</p>
-        <% end %>
-      </tbody>
-     <% end %>
-    </table>
-  </div>
-  </div>
- </div>
+        </div>
+      <% end %>
+    <% if @posts.count == 0 %>
+      <div class="py-5 text-center">
+        検索結果がありませんでした
+      </div>
+      <div class="text-center text-secondary">
+        <%= link_to "<<トップページへ戻る", root_path, class: "text-dark text-gray" %>
+      </div>
+    <% end %>
+<% end %>

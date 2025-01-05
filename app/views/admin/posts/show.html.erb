@@ -56,10 +56,12 @@
           </div>
           <hr width="auto">
           <div class="px-2 row">
-          &nbsp;コメント<%= "#{@post.post_comments.count}" %>件<i class="fa-regular fa-comment"></i>
+            &nbsp;コメント<%= "#{@post.post_comments.count}" %>件<i class="fa-regular fa-comment"></i>
           </div>
           <hr width="auto">
+
           <%= render "admin/post_comments/index", post: @post, post_comment: @post_comment %>
+          
         </div>
       </div>
     </div>

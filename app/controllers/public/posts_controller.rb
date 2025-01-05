@@ -23,6 +23,7 @@ class Public::PostsController < ApplicationController
    @post = Post.find(params[:id])
    @post_comment = PostComment.new
    @post_comments = @post.post_comments.order(created_at: :desc)
+   @user = User.find(params[:id])
   end
 
   def edit
@@ -51,14 +52,15 @@ class Public::PostsController < ApplicationController
 
 private
 
-def post_params
-  params.require(:post).permit(:step_count, :place, :genre, :body, :images)
-end
-def is_matching_login_user
-  post = Post.find(params[:id])
-  unless post.user_id == current_user.id
-    redirect_to posts_path
+  def post_params
+    params.require(:post).permit(:step_count, :place, :genre, :body, :images)
   end
-end
+
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    unless post.user_id == current_user.id
+      redirect_to posts_path
+    end
+  end
 
 end 
