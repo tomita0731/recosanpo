@@ -1,12 +1,10 @@
 class Admin::PostsController < ApplicationController
   layout 'admin'
   
-  def index
-    @posts = Post.all
-  end
-
+  
   def show
     @post = Post.find(params[:id])
+    @post_comments = @post.post_comments.order(created_at: :desc)
   end
 
   def destroy
