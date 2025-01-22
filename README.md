@@ -20,9 +20,9 @@
 
 ## 設計書
 - UI Flows:https://drive.google.com/file/d/1XUQ8hcCirHPGqrCOtXXWU2tAle5FQRDX/view?usp=sharing
--ER図:https://drive.google.com/file/d/1htG76NW-KjLUBHqKQUFtp7yYkpBHYFcq/view?usp=sharing
--テーブル定義書:https://docs.google.com/spreadsheets/d/1jCvEVEtMo0kl9uNYMjL05b38_pmKp1N1rBXW6s9Bu5g/edit?usp=sharing
--アプリケーション詳細設計書:https://docs.google.com/spreadsheets/d/1GbjkZHD7m4jrnKAGtvVgj4DnxJuTqT2xN8NVqs5url0/edit?usp=sharing
+- ER図:https://drive.google.com/file/d/1htG76NW-KjLUBHqKQUFtp7yYkpBHYFcq/view?usp=sharing
+- テーブル定義書:https://docs.google.com/spreadsheets/d/1jCvEVEtMo0kl9uNYMjL05b38_pmKp1N1rBXW6s9Bu5g/edit?usp=sharing
+- アプリケーション詳細設計書:https://docs.google.com/spreadsheets/d/1GbjkZHD7m4jrnKAGtvVgj4DnxJuTqT2xN8NVqs5url0/edit?usp=sharing
 ​
 ## 開発環境
 - OS：Amazon Linux 2
