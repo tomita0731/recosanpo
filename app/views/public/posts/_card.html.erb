@@ -12,7 +12,7 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-7 px-0 text-center">
         <div class ="card-user pb-2">
-          <%= image_tag post.user.get_profile_image(50,50), class: "border-radius.how" %>
+          <%= image_tag post.user.get_profile_image(50,50), class: "border-radius" %>
             <% if post.user == current_user %>
               <%= link_to mypage_path(current_user),class: "text-dark" do %>
                 <strong><%= post.user.name %></strong>
