@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+    attributes:
+      user: 
+        name: アカウント名
+        email: Eメールアドレス
+        password: パスワード
+        introduction: 自己紹介文
+      post:
+        body: 本文
+        place: 場所
+        step_count: 歩数
+        publish_status: 公開・非公開
+        genre: ジャンル
