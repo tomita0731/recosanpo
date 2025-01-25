@@ -4,7 +4,7 @@
   <div class="container">
     <div class="form-row no-gutters">
       <div class="form-group col-md-5 col-sm-10 mx-2 mx-sm-auto rounded shadow-lg px-5 py-3 my-5">
-        <%= form_with model: @post, builder: CustomFormHelper do |f| %>
+        <%= form_with model: @post, builder: ErrorFormBuilder do |f| %>
           
           <%= render "form", post: @post, f: f %> 
           

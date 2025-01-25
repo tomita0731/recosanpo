@@ -57,9 +57,12 @@
 }
 
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: contents;
-  display: table;
+.error-class {
+  color: red;
+}
+
+input.error-class {
+  border: 2px solid red;
+  color: #721c24;
+  background-color:#fff;
 }

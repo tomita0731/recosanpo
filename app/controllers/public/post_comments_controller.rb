@@ -9,7 +9,7 @@ class Public::PostCommentsController < ApplicationController
       redirect_to post_path(@post)
     else
       flash[:alert] = "投稿に失敗しました"
-      redirect_to request.referer
+      redirect_to post_path(@post.id)
     end
   end
 
