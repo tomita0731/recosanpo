@@ -18,9 +18,20 @@
   <label for="post_images">画像</label>
   <%= f.file_field :images, accept: "image/*", class:"btn" %>
 </div>
+
+<div class="form-group">
+  <%= f.radio_button :publish_status, Post.publish_statuses.key(0) %>
+  <%= f.label :publish_status_norelease, Post.publish_statuses_i18n[:noreleased] %>
+  <%= f.radio_button :publish_status, Post.publish_statuses.key(1) %>
+  <%= f.label :publish_status_release, Post.publish_statuses_i18n[:released] %>
+ 
+</div>
+
 <% if current_page?(action: "new") %>
   <%= f.submit "投稿", class: "btn btn-lg btn-block  mt-5 btn-info " %>
 <% else %>
   <span><%= f.submit "保存", class: "btn btn-block mt-1 btn-info " %></span>
 <% end %>
+
+
           

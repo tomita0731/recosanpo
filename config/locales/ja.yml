@@ -15,3 +15,9 @@ ja:
         step_count: 歩数
         publish_status: 公開・非公開
         genre: ジャンル
+    
+  enums:
+    post:
+      publish_status:
+        noreleased: "非公開"
+        released: "公開"

@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.latest
+    @posts = Post.where(publish_status:1).latest
   end
 
   def show
@@ -52,7 +52,7 @@ class Public::PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:step_count, :place, :genre, :body, :images)
+    params.require(:post).permit(:step_count, :place, :genre, :body, :images, :publish_status)
   end
 
   def is_matching_login_user

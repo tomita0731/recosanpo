@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   validates :step_count, presence: true
   validates :place, presence: true
 
+  enum publish_status: { noreleased: 0, released: 1}
+
   scope :latest, -> { order(created_at: :desc) }
 
 
