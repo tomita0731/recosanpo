@@ -55,3 +55,14 @@
   color : #708090;
   margin-bottom: 10px;
 }
+
+
+.error-class {
+  color: red;
+}
+
+input.error-class {
+  border: 2px solid red;
+  color: #721c24;
+  background-color:#fff;
+}
