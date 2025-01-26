@@ -17,15 +17,17 @@
               <%= link_to mypage_path(current_user),class: "text-dark" do %>
                 <strong><%= post.user.name %></strong>
               <% end %>
-        </div>
+       
             <% else %>
               <%= link_to user_path(post.user.id),class: "text-dark" do %>
                 <strong><%= post.user.name %></strong>
               <% end %>
+            <% end %>
+          
         </div>
         <div class="card-follow">
           <% if post.user == current_user %>
-            <div><%= post.publish_status_i18n %></div>
+            <div>-<%= post.publish_status_i18n %>-</div>
           <% else %>
             <div id="follow_btn_<%= post.user.id %>">
             <%= render "public/relationships/btn", user: post.user %>
@@ -33,7 +35,6 @@
           <% end %>
 
         </div>
-          <% end %>
       </div>
       <div class="col-5 px-0 align-items-center">
         <div class="card-place mt-2">
