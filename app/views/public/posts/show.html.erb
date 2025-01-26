@@ -10,7 +10,7 @@
         <div class="col-6 px-0">
           <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
-        <div class="col-3  px-0">
+        <div class="col-3 px-0">
 
           <div id="favorites_btn_<%= @post.id %>">
             <%= render 'public/favorites/btn', post: @post %>

@@ -18,7 +18,7 @@ class Admin::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:step_count, :place, :genre, :body, :image)
+    params.require(:post).permit(:step_count, :place, :genre, :body, :image, :publish_status)
   end
 
   def post_params

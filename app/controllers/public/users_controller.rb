@@ -24,7 +24,7 @@ before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.latest
+    @posts = @user.posts.where(publish_status:1).latest
   end
 
   def index
@@ -41,7 +41,7 @@ before_action :ensure_guest_user, only: [:edit]
   def favorites
     @user = User.find(params[:id])
     favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    @favorite_posts = Post.where(id: favorites, publish_status: 1)
   end
 
 end
@@ -53,7 +53,7 @@ def user_params
 end
 
 def post_params
-  params.require(:post).permit(:step_count, :place, :genre, :body, :images)
+  params.require(:post).permit(:step_count, :place, :genre, :body, :images, :publish_status)
 end
 
 def ensure_guest_user
