@@ -74,3 +74,6 @@ gem 'devise-i18n-views'
 gem 'rails-i18n'
 
 gem "enum_help"
+
+gem 'dotenv-rails' 
+gem 'geocoder'
