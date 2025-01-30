@@ -1,5 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :check_access, only: [:show]
+
   def new
     @post = Post.new
   end
@@ -16,13 +18,22 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(publish_status:1).latest
-  end
+        @posts = Post.where(publish_status:1).page(params[:page])
+      end
+      
+
 
   def show
-   @post = Post.find(params[:id])
-   @post_comment = PostComment.new
-   @post_comments = @post.post_comments.order(created_at: :desc)
+   respond_to do |format|
+     format.html do
+       @post = Post.find(params[:id])
+       @post_comment = PostComment.new
+       @post_comments = @post.post_comments.order(created_at: :desc)
+     end
+     format.json do
+       @post = Post.find(params[:id])
+     end
+   end
   end
 
   def edit
@@ -41,8 +52,8 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     is_matching_login_user
     if @post.update(post_params)
-     flash[:notice] = "投稿を更新しました"
-     redirect_to post_path(@post.id)
+      flash[:notice] = "投稿を更新しました"
+      redirect_to post_path(@post.id)
     else
      render :edit
     end
@@ -52,7 +63,7 @@ class Public::PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:step_count, :place, :genre, :body, :images, :publish_status)
+    params.require(:post).permit(:step_count, :place, :genre, :body, :images, :publish_status, :address)
   end
 
   def is_matching_login_user
@@ -62,4 +73,13 @@ private
     end
   end
 
-end 
+  def check_access
+    @post = Post.find(params[:id])
+    unless  @post.publish_status == "released" && @post.user_id = current_user.id 
+      flash[:alert] = "この投稿は非公開です"
+      redirect_to posts_path
+    end
+  end
+  
+
+  end

@@ -66,3 +66,13 @@ input.error-class {
   color: #721c24;
   background-color:#fff;
 }
+
+#map {
+  width: 100%;
+  height: calc(100vh - 88px - 179px);
+}
+
+.place_comment {
+  color: grey;
+  font-size: small;
+}

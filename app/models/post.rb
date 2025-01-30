@@ -6,11 +6,12 @@ class Post < ApplicationRecord
 
 
   validates :step_count, presence: true
-  validates :place, presence: true
-  validates :address, presence: true
+  validates :place, presence: { if: -> { address.blank? } }
+  validates :publish_status, presence: true
+  validates :address, presence: { if: -> { place.blank? } }
 
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: :address_changed?
 
   enum publish_status: { noreleased: 0, released: 1}
 
