@@ -20,7 +20,7 @@
         <div class="px-1 col-3 text-right px-0">
           <span class="post-edit">
             <% if @post.user == current_user %>
-              <%= link_to  edit_post_path(@post), class: "text-dark" do%>
+              <%= link_to  edit_post_path(@post), class: "text-dark", data: {turbolinks: "false"} do%>
                 <i class="fa-regular fa-pen-to-square"></i>
               <% end %>
               <%= "|" %>

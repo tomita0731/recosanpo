@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get "homes/about"
     get 'mypage', to: 'users#mypage'
     get "search" => "searches#search"
+    resource :map, only: [:show]
     resources :users, only: [:edit, :show, :index, :update, :destroy] do
       resource :relationships, only: [:create, :destroy]
         get 'followings' => 'relationships#followings', as: 'followings'

@@ -15,7 +15,10 @@ ja:
         step_count: 歩数
         publish_status: 公開・非公開
         genre: ジャンル
-    
+        address: 住所
+        latitude: 緯度
+        longitude: 経度
+
   enums:
     post:
       publish_status:

@@ -9,21 +9,21 @@ puts "seedの実行を開始"
 
 aozora = User.find_or_create_by!(email: "aozora@example.com") do |user|
   user.name = "あおぞら"
-  user.password = "password"
+  user.password = ENV["seed-password"]
   user.introduction = "空好き。"
   # user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
 end
 
 ensyuunoobaa = User.find_or_create_by!(email: "obaa@example.com") do |user|
   user.name = "遠州のおばあ"
-  user.password = "password"
+  user.password = ENV["seed-password"]
   user.introduction = "おばあ、慣れないSNS挑戦中"
   # user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
 end
 
 tarou = User.find_or_create_by!(email: "tarou@example.com") do |user|
   user.name = "たろう"
-  user.password = "password"
+  user.password = ENV["seed-password"]
   # user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
 end
 
@@ -31,7 +31,13 @@ end
   step_count: 2000,
   place: "座間",
   genre: "散歩",
+  address:
+  atitude:
+  longitude:
   body: "今日はいい天気！",
+  image:
+  publish_status:
+  created_at:
   user_id: 1
 )
 
