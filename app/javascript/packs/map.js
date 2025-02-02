@@ -20,7 +20,6 @@ async function initMap() {
     
     const url = new URL(location.href);
     const post_id=url.searchParams.get('post_id');
-    console.log(post_id)
     const response = await fetch("/posts/"+post_id+".json");
     if (!response.ok) throw new Error('Network response was not ok');
 
@@ -32,7 +31,7 @@ async function initMap() {
       const address = item.address;
       const place = item.place;
       const userName = item.user.name;
-
+      
       const marker = new google.maps.marker.AdvancedMarkerElement ({
         position: { lat: latitude, lng: longitude },
         map,
@@ -46,6 +45,7 @@ async function initMap() {
             <p class="lead m-0 font-weight-bold">${userName}</p>
           </div>
           <div>
+            <h1 class="h6 font-weight-bold">${place}</h1>
             <p class="text-muted">${address}</p>
           </div>
         </div>
