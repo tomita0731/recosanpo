@@ -9,21 +9,21 @@ puts "seedの実行を開始"
 
 aozora = User.find_or_create_by!(email: "aozora@example.com") do |user|
   user.name = "あおぞら"
-  user.password = ENV["seed-password"]
+  user.password = ENV["SEED_PASSWORD"]
   user.introduction = "空好き。"
   # user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
 end
 
 ensyuunoobaa = User.find_or_create_by!(email: "obaa@example.com") do |user|
   user.name = "遠州のおばあ"
-  user.password = ENV["seed-password"]
+  user.password = ENV["SEED_PASSWORD"]
   user.introduction = "おばあ、慣れないSNS挑戦中"
   # user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
 end
 
 tarou = User.find_or_create_by!(email: "tarou@example.com") do |user|
   user.name = "たろう"
-  user.password = ENV["seed-password"]
+  user.password = ENV["SEED_PASSWORD"]
   # user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
 end
 

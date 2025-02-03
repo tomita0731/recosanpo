@@ -4,7 +4,7 @@ before_action :ensure_guest_user, only: [:edit]
   def mypage
     @users = User.all
     @user = User.find(current_user.id)
-    @posts = @user.posts.latest
+    @posts = @user.posts.latest.page(params[:page]).per(10)
   end
 
   def edit
@@ -24,11 +24,11 @@ before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.where(publish_status:1).latest
+    @posts = @user.posts.where(publish_status:1).latest.page(params[:page]).per(10)
   end
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def destroy
@@ -41,7 +41,7 @@ before_action :ensure_guest_user, only: [:edit]
   def favorites
     @user = User.find(params[:id])
     favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.where(id: favorites, publish_status: 1)
+    @favorite_posts = Post.where(id: favorites, publish_status: 1).page(params[:page]).per(10)
   end
 
 end
