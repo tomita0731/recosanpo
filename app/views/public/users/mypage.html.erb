@@ -45,7 +45,7 @@
         <div class="card-footer text-body-secondary">
           <div class ="row">
             <div class="col-5 px-0">
-              <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <%= l post.created_at, format: :short  %>
             </div>
             <div class="col-3 px-0">
               <div id="favorites_btn_<%= post.id %>">
@@ -61,4 +61,7 @@
       </div>
     </div>
   <% end %>
+  <div class ="row my-5 justify-content-center">
+    <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>

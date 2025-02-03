@@ -8,7 +8,7 @@
     <div class="card-footer text-body-secondary">
       <div class="row">
         <div class="col-6 px-0">
-          <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <%= l @post.created_at, format: :short  %>
         </div>
         <div class="col-3 px-0">
 

@@ -18,8 +18,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-        @posts = Post.where(publish_status:1).page(params[:page])
-      end
+     @posts = Post.where(publish_status:1).latest.page(params[:page])
+  end
       
 
 

@@ -28,13 +28,13 @@ end
 
 def self.looks(search, word)
   if search == "perfect_match"
-    @post = Post.where("genre LIKE? OR place LIKE?","#{word}","#{word}")
+    @post = Post.where("genre LIKE? OR place LIKE? OR address LIKE? OR body LIKE?","#{word}","#{word}","#{word}","#{word}")
   elsif search == "forward_match"
-    @post = Post.where("genre LIKE? OR place LIKE?","#{word}%","#{word}%")
+    @post = Post.where("genre LIKE? OR place LIKE? OR address LIKE? OR body LIKE?","#{word}%","#{word}%","#{word}%","#{word}%")
   elsif search == "backward_match"
-    @post = Post.where("genre LIKE? OR place LIKE?","%#{word}","%#{word}")
+    @post = Post.where("genre LIKE? OR place LIKE? OR address LIKE? OR body LIKE?","%#{word}","%#{word}","%#{word}","%#{word}")
   elsif search == "partial_match"
-    @post = Post.where("genre LIKE? OR place LIKE?","%#{word}%","%#{word}%")
+    @post = Post.where("genre LIKE? OR place LIKE? OR address LIKE? OR body LIKE?","%#{word}%","%#{word}%","%#{word}%","%#{word}%")
   else
     @post = Post.all
   end
