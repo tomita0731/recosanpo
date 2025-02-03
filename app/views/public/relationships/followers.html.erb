@@ -1,3 +1,7 @@
 <h2 class=heading><span><%= @user.name %>さんの</br>フォロワーユーザー</span></h2>
 
   <%= render "public/users/info", users: @users %>
+
+  <div class="col-12 py-3 text-center"> 
+    <%= link_to "<<  マイページに戻る", mypage_path(current_user.id), class: "text-secondary" %>
+  </div>

@@ -41,4 +41,7 @@
   <div class ="row my-5 justify-content-center">
     <%= paginate  @favorite_posts, theme: 'twitter-bootstrap-4' %>
   </div>
+  <div class="col-12 py-3 text-center"> 
+    <%= link_to "<<  マイページに戻る", mypage_path(current_user.id), class: "text-secondary" %>
+  </div>
 </div>
