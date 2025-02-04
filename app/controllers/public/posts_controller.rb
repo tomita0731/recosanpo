@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
      format.html do
        @post = Post.find(params[:id])
        @post_comment = PostComment.new
-       @post_comments = @post.post_comments.order(created_at: :desc)
+       @post_comments = @post.post_comments.order(created_at: :desc).page(params[:page])
      end
      format.json do
        @post = Post.find(params[:id])
@@ -45,6 +45,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
+    flash[:notice] = "投稿を削除しました"
     redirect_to mypage_path
   end
 
@@ -74,8 +75,8 @@ private
   end
 
   def check_access
-    @post = Post.find(params[:id])
-    unless  @post.publish_status == "released" && @post.user_id = current_user.id 
+    post = Post.find(params[:id])
+    unless  post.user_id == current_user.id || post.publish_status == "released" then
       flash[:alert] = "この投稿は非公開です"
       redirect_to posts_path
     end

@@ -29,8 +29,8 @@
            </div>
           </div>
           <% unless @post.body.blank? %>
+            <hr width="auto">
             <div class="row">
-              <hr width="auto">
               <div class="card-body py-0"><%= @post.body %></div>   
             </div>
           <% end %>  
@@ -42,9 +42,9 @@
           <% end %>
         </div>
         <div class="card-footer text-body-secondary">
-          <div class="row">
+          <div class="row text-center">
             <div class="col-9 text-left">
-              <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <%= l @post.created_at, format: :short  %>
             </div>
             <div class="px-1 col-3 text-right">
               <span class="post-edit">
