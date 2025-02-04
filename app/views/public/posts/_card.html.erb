@@ -52,11 +52,10 @@
       </div>
     </div>
     <% unless post.body.blank? %>
-    <hr width="auto">
-      <div class="row">
-        <div class="card-body py-0"><%= simple_format(post.body, sanitize: true) %></div>   
+      <hr width="auto">
+        <div class="row">
+          <div class="card-body py-0"><%= simple_format(post.body, sanitize: true) %></div>   
         </div>
-      </div> 
     <% end %>  
   </div>
   <div class= body-img>
@@ -64,5 +63,6 @@
       <%= image_tag url_for(post.images.first), class: "card-img-bottom" %>
     <% else %>
     <% end %>
+  </div> 
 </div>
         
