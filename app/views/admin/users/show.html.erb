@@ -69,12 +69,21 @@
           <% end %>
         </div>
         <div class="card-footer text-body-secondary">
-          <%= post.created_at.strftime('%Y/%m/%d %H:%M') %> |
-          <%= link_to "コメント#{post.post_comments.count}件", admin_post_path(post.id), class: "text-dark" %>
-          <i class="fa-regular fa-comment"></i>
+          <div class ="row text-center">
+            <div class="col-4 px-0">
+              <%= l post.created_at, format: :short  %>
+            </div>
+            <div class="col-7 px-0">
+             <%= link_to "コメント#{post.post_comments.count}件", admin_post_path(post.id), class: "text-dark" %>
+              <i class="fa-regular fa-comment"></i>
+            </div>
+          </div>
         </div>
     </div>
-  </div>
+</div>
  <% end %>
+ <div class ="row my-5 justify-content-center">
+    <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>
 
