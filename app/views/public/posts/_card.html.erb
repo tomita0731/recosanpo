@@ -27,9 +27,6 @@
           <% if post.user == current_user %>
             <div>-<%= post.publish_status_i18n %>-</div>
           <% else %>
-            <div id="follow_btn_<%= post.user.id %>">
-              <%= render "public/relationships/btn", user: post.user %>
-            </div>
           <% end %>
         </div>
       </div>

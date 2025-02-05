@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if admin_controller?
       authenticate_admin!
    else
-      authenticate_user! unless action_is_public?
+      authenticate_user! unless action_is_public? 
    end
   end
 
