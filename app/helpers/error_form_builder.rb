@@ -48,7 +48,5 @@ class ErrorFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  
-  
-
 end 
+
